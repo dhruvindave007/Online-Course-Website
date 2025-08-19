@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="course-page">
+
+  <!-- LEFT COLUMN (Main course content) -->
+  <div class="course-main">
+
+    <!-- Overview -->
+    <section class="course-overview course-section">
+        <h2>About this course</h2>
+        {% for overvieww in course.details.get_overview %}
+            <p>{{ overvieww }}</p>
+        {% endfor %}
+    </section>
+
+    <!-- Learning Outcomes -->
+<section class="course-outcomes course-section">
+    <h2>What you'll learn</h2>
+    <ul>
+        {% for outcome in course.details.get_outcomes %}
+            <li>{{ outcome }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Skills -->
+<section class="course-skills course-section">
+    <h2>Skills you'll gain</h2>
+    <ul>
+        {% for skill in course.details.get_skills %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Tools -->
+<section class="course-tools course-section">
+    <h2>Tools you'll learn</h2>
+    <ul>
+        {% for tool in course.details.get_tools %}
+            <li>{{ tool }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+
+    <!-- What’s included -->
+    <section class="course-includes course-section">
+        <h2>What’s included</h2>
+        <ul>
+            <li>Certificate: {{ course.details.certificate }}</li>
+            <li>Languages available: {{ course.details.languages_available }}</li>
+            <li>Updated: {{ course.details.last_updated }}</li>
+            <li>Exercises: {{ course.details.exercises_count }}</li>
+        </ul>
+    </section>
+
+    <!-- Instructor -->
+    <section class="instructor-info course-section">
+        <h2>Instructor</h2>
+        <article>
+            <h3>{{ course.details.instructor }}</h3>
+            <p>{{ course.details.instructor_bio }}</p>
+        </article>
+    </section>
+
+    <!-- Metadata -->
+    <footer class="course-meta course-section">
+        <p><em>Created on:</em> {{ course.created_at|date:"F j, Y" }}</p>
+        <p><em>Last updated:</em> {{ course.details.updated_at|date:"F j, Y" }}</p>
+    </footer>
+
+  </div>
+
+  <!-- RIGHT COLUMN (Sticky sidebar) -->
+  <aside class="course-sidebar">
+    <figure class="course-image-wrapper">
+        <img src="{{ course.image.url }}" alt="{{ course.title }}">
+    </figure>
+
+    <section class="course-main-info">
+        <h1 class="course-title">{{ course.title }}</h1>
+        <p class="short-description">{{ course.details.short_description }}</p>
+
+        <div class="course-meta">
+            <p><strong>Price:</strong> ${{ course.price }}</p>
+            <p><strong>Duration:</strong> {{ course.duration }}</p>
+            <p><strong>Language:</strong> {{ course.details.language }}</p>
+        </div>
+
+        <!-- Enroll Call-to-Action -->
+        <div class="enroll-section">
+            <form action="#" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-enroll">Enroll Now</button>
+            </form>
+            <div class="start-date">
+                <span>Starts {{ course.start_date|date:"M d, Y" }}</span>
+            </div>
+        </div>
+
+        <!-- Subscription or Additional Info -->
+        <div class="extra-info">
+            <p>
+                Included with 
+                <img src="/static/images/subscription-badge.png" 
+                     alt="Subscription Plan" 
+                     style="max-height:12px;">
+            </p>
+            <a href="#" class="learn-more-link">Learn more</a>
+        </div>
+    </section>
+  </aside>
+
+</div>
+
+{% endblock %}
