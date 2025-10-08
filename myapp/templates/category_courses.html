@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Courses in {{ category.name }}</h2>
+
+<div class="card-container">
+  {% for course in courses %}
+    <a href="{% url 'course_detail' course.slug %}">
+      <div class="card">
+        <div class="img">
+          <img src="{% if course.image %}{{ course.image.url }}{% else %}{% static 'images/default.png' %}{% endif %}" 
+               alt="{{ course.title }}">
+        </div>
+        <div class="info">
+          <h2 class="title">{{ course.title }}</h2>
+          <p class="desc">{{ course.description }}</p>
+          <div class="bottom">
+            <div class="duration-container">
+              <img src="{% static 'images/clock_logo.png' %}" alt="Duration Icon" class="duration-icon">
+              <div class="duration">{{ course.duration }}</div>
+            </div>
+            <div class="price">INR. {{ course.price }}</div>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </a>
+  {% empty %}
+    <p>No courses in this category yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

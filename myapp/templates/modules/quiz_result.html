@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load custom_tags %}
+
+{% block content %}
+
+<div class="results-container">
+    <div class="score-card">
+        <h1 class="score-title">{{ quiz.title }} Results</h1>
+        <p class="score-summary">You scored {{ score }}%</p>
+        <p class="score-detail">{{ correct }} out of {{ total }} questions correct.</p>
+    </div>
+
+    <div class="review-section">
+        <h2 class="review-title">Review Answers</h2>
+        {% for question in quiz.questions.all %}
+            <div class="review-card">
+                <p class="review-question"><strong>Q{{ forloop.counter }}:</strong> {{ question.text }}</p>
+                <ul class="review-options">
+                    {% for option in question.options.all %}
+                        {% with user_answer_id=user_answers|get_item:question.id %}
+                            <li class="review-option 
+                                {% if option.is_correct %}correct{% endif %}
+                                {% if user_answer_id == option.id and not option.is_correct %}incorrect{% endif %}">
+                                {{ option.text }}
+                                {% if option.is_correct %}
+                                    <span class="status correct-icon"> Correct Answer</span>
+                                {% elif user_answer_id == option.id and not option.is_correct %}
+                                    <span class="status incorrect-icon"> Your Answer</span>
+                                {% endif %}
+                            </li>
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="back-link">
+        <a href="{% url 'module_list' quiz.module.course.slug %}" class="btn-secondary">Back to Module</a>
+    </div>
+</div>
+
+{% endblock %}

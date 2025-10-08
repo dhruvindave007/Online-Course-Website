@@ -1,38 +1,44 @@
 {% extends 'base.html' %}
-
 {% load static %}
 {% block content %}
   <h2>Welcome, {{ request.user.username }}!</h2>
   <a class="home-logout" href="{% url 'logout' %}">Logout</a>
 
+<div class="category-section">
+  <h3 class="category-heading">Explore by Category</h3>
+  <ul class="category-list">
+    {% for category in categories %}
+      <li class="category-item">
+        <a href="{% url 'category_courses' category.slug %}" class="category-link">{{ category.name }}</a>
+      </li>
+    {% empty %}
+      <li class="no-category">No categories available.</li>
+    {% endfor %}
+  </ul>
+</div>
+
   <div class="card-container">
     {% for course in courses %}
-  <a href="{% url 'course_detail' course.slug %}">
-    <div class="card">
-      <div class="img">
-        <img src="{% if course.image %}{{ course.image.url }}{% else %}{% static 'images/default.png' %}{% endif %}" 
-     alt="{{ course.title }}">
-      </div>
-      <div class="info">
-
-        <h2 class="title">
-    {{ course.title }}
-  </h2>
-
-        <p class="desc">{{ course.description }}</p>
-        <div class="bottom">
-          
-          <div class="duration-container">
-          <img src="{% static 'images/clock_logo.png' %}" alt="Duration Icon" class="duration-icon">
-          <div class="duration">{{ course.duration }}</div>
+      <a href="{% url 'course_detail' course.slug %}">
+        <div class="card">
+          <div class="img">
+            <img src="{% if course.image %}{{ course.image.url }}{% else %}{% static 'images/default.png' %}{% endif %}" 
+                 alt="{{ course.title }}">
           </div>
-        </a>
-
-          <div class="price">INR.{{ course.price }}</div>
-          <button class="btn">Enroll Now</button>
+          <div class="info">
+            <h2 class="title">{{ course.title }}</h2>
+            <p class="desc">{{ course.description }}</p>
+            <div class="bottom">
+              <div class="duration-container">
+                <img src="{% static 'images/clock_logo.png' %}" alt="Duration Icon" class="duration-icon">
+                <div class="duration">{{ course.duration }}</div>
+              </div>
+            </a>
+              <div class="price">INR. {{ course.price }}</div>
+              <button class="btn">Enroll Now</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
     {% endfor %}
   </div>
 {% endblock %}

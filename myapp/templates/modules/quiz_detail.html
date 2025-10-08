@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="modules-container">
+    <h1 class="page-title">{{ quiz.title }}</h1>
+    
+    <form method="POST" class="quiz-form">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question-card">
+                <p class="question-text"><strong>Q{{ forloop.counter }}: {{ question.text }}</strong></p>
+                <div class="options-list">
+                    {% for option in question.options.all %}
+                        <div class="option-item">
+                            <input type="radio" id="option{{ option.id }}" name="question_{{ question.id }}" value="{{ option.id }}">
+                            <label for="option{{ option.id }}">{{ option.text }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn-submit">Submit Quiz</button>
+    </form>
+
+    <div class="back-link">
+        <a href="{% url 'module_list' quiz.module.course.slug %}" class="btn-secondary">← Back to Module</a>
+    </div>
+</div>
+{% endblock %}

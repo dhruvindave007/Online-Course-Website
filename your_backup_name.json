@@ -1,0 +1,450 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "myapp",
+    "model": "course"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "myapp",
+    "model": "customuser"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "myapp",
+    "model": "course_detail"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "myapp",
+    "model": "coursecategory"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "myapp",
+    "model": "enrollment"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "myapp",
+    "model": "certificate"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "myapp",
+    "model": "coursereview"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "myapp",
+    "model": "courselevel"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "myapp",
+    "model": "quiz"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "myapp",
+    "model": "question"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "myapp",
+    "model": "answer"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "myapp",
+    "model": "module"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 19,
+  "fields": {
+    "app_label": "myapp",
+    "model": "option"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "c02wcbj8cfwezbxrzc5ib9789sbvt6bb",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pCWKeC4dO8ZyMAMUjU0Ke3KeHfbpAvdvvf-f6tA61LC2mQOI6uL6tXpl0VKT6m74AfV-6TTVJd5jHpP9GGbvk0sr-vR_h0UamVbgwyAVsBSxo4gOUiS0Bgv1KO3kImyELsN-mgyM8KALnZgfAZnz-rzBfYoOEY:1upLUn:XdDEjQBCYIHmfq5ppTR5DfnCjapyhzZtcmunT14NN00",
+    "expire_date": "2025-09-05T06:43:29.652Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fcjmspvxp83vicfipnmk1lyay0whsu5i",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pCWKeC4dO8ZyMAMUjU0Ke3KeHfbpAvdvvf-f6tA61LC2mQOI6uL6tXpl0VKT6m74AfV-6TTVJd5jHpP9GGbvk0sr-vR_h0UamVbgwyAVsBSxo4gOUiS0Bgv1KO3kImyELsN-mgyM8KALnZgfAZnz-rzBfYoOEY:1uoj3g:oO_WsRu5bPN_ZVoJWuE_hhy58PrCG2RfyDEGdcMJzko",
+    "expire_date": "2025-09-03T13:40:56.782Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kukhf3tt3fh6h5qoyy23acxfj23ddjy3",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pCWKeC4dO8ZyMAMUjU0Ke3KeHfbpAvdvvf-f6tA61LC2mQOI6uL6tXpl0VKT6m74AfV-6TTVJd5jHpP9GGbvk0sr-vR_h0UamVbgwyAVsBSxo4gOUiS0Bgv1KO3kImyELsN-mgyM8KALnZgfAZnz-rzBfYoOEY:1uoNSC:xNxJxFnNyhbjNP5FexYzhNaq02EVZIghvNxp8pwn3Xc",
+    "expire_date": "2025-09-02T14:36:48.256Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 1,
+  "fields": {
+    "title": "Artificial Intelligence from Google",
+    "description": "this is a course for AI learners from beginning.",
+    "price": "200.00",
+    "duration": "2  Months",
+    "image": "static/images/search.png",
+    "slug": "artificial-intelligence-from-google",
+    "start_date": null,
+    "created_at": "2025-08-13T14:31:28.330Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 2,
+  "fields": {
+    "title": "Data Science Cource from Microsoft",
+    "description": "this is specially made for them who want to start their career in the data science. Made for beginners. Officially from Microsoft Ltd. Begineer Friendly.",
+    "price": "100.00",
+    "duration": "2 months",
+    "image": "static/images/microsoft.png",
+    "slug": "data-science-cource-from-microsoft",
+    "start_date": null,
+    "created_at": "2025-08-14T06:40:49.493Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 3,
+  "fields": {
+    "title": "IBM cloud Computing Course",
+    "description": "This is Beginner friendly Cloud computing Course made by IBM.",
+    "price": "100.00",
+    "duration": "1 month",
+    "image": "static/images/pngwing_GEC90HU.com.png",
+    "slug": "ibm-cloud-computing-course",
+    "start_date": null,
+    "created_at": "2025-08-14T06:46:17.768Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 5,
+  "fields": {
+    "title": "IBM Data Science Professional Certificate",
+    "description": "abc",
+    "price": "100.00",
+    "duration": "2  Months",
+    "image": "static/images/pngwing_gV0JUpS.com.png",
+    "slug": "ibm-data-science-professional-certificate",
+    "start_date": "2025-08-18",
+    "created_at": "2025-08-18T13:59:37.627Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 11,
+  "fields": {
+    "title": "Data Science Fundamentals",
+    "description": "Data Science Fundamentals professional course",
+    "price": "1999.00",
+    "duration": "6 weeks",
+    "image": "static/images/default.png",
+    "slug": "data-science-fundamentals",
+    "start_date": null,
+    "created_at": "2025-08-19T14:29:51.761Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 12,
+  "fields": {
+    "title": "Full-Stack Web Development",
+    "description": "Full-Stack Web Development professional course",
+    "price": "2999.00",
+    "duration": "10 weeks",
+    "image": "static/images/default.png",
+    "slug": "full-stack-web-development",
+    "start_date": null,
+    "created_at": "2025-08-19T14:29:51.770Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 13,
+  "fields": {
+    "title": "Machine Learning with Python",
+    "description": "Machine Learning with Python professional course",
+    "price": "2499.00",
+    "duration": "8 weeks",
+    "image": "static/images/default.png",
+    "slug": "machine-learning-with-python",
+    "start_date": null,
+    "created_at": "2025-08-19T14:29:51.776Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 14,
+  "fields": {
+    "title": "Digital Marketing Strategy",
+    "description": "Digital Marketing Strategy professional course",
+    "price": "1499.00",
+    "duration": "4 weeks",
+    "image": "static/images/default.png",
+    "slug": "digital-marketing-strategy",
+    "start_date": null,
+    "created_at": "2025-08-19T14:29:51.782Z"
+  }
+},
+{
+  "model": "myapp.course",
+  "pk": 15,
+  "fields": {
+    "title": "Cloud Computing Essentials",
+    "description": "Cloud Computing Essentials professional course",
+    "price": "1799.00",
+    "duration": "5 weeks",
+    "image": "static/images/default.png",
+    "slug": "cloud-computing-essentials",
+    "start_date": null,
+    "created_at": "2025-08-19T14:29:51.788Z"
+  }
+},
+{
+  "model": "myapp.course_detail",
+  "pk": 1,
+  "fields": {
+    "course": 3,
+    "instructor": "mike tyson",
+    "instructor_bio": "Instructor bio",
+    "short_description": "ABC",
+    "overview": null,
+    "outcomes": "",
+    "skills": "",
+    "tools": "",
+    "requirements": null,
+    "language": "English",
+    "certificate": null,
+    "languages_available": null,
+    "last_updated": null,
+    "exercises_count": 0,
+    "updated_at": "2025-08-18T07:46:03.955Z"
+  }
+},
+{
+  "model": "myapp.course_detail",
+  "pk": 3,
+  "fields": {
+    "course": 5,
+    "instructor": "IBM",
+    "instructor_bio": "IBM is instructor",
+    "short_description": "Prepare for a career as a data scientist. Build job-ready skills – and must-have AI skills – for an in-demand career. Earn a credential from IBM. No prior experience required.",
+    "overview": "Prepare for a career in the high-growth field of data science. In this program, you’ll develop the skills, tools, and portfolio to have a competitive edge in the job market as an entry-level data scientist in as little as 4 months. No prior knowledge of computer science or programming languages is required. \r\n\r\n\r\nData science involves gathering, cleaning, organizing, and analyzing data with the goal of extracting helpful insights and predicting expected outcomes. The demand for skilled data scientists who can use data to tell compelling stories to inform business decisions has never been greater. \r\n\r\nYou’ll learn in-demand skills used by professional data scientists including databases, data visualization, statistical analysis, predictive modeling, machine learning algorithms, and data mining. You’ll also work with the latest languages, tools,and libraries including Python, SQL, Jupyter notebooks, Github, Rstudio, Pandas, Numpy, ScikitLearn, Matplotlib, and more.\r\n\r\nUpon completing the full program, you will have built a portfolio of data science projects to provide you with the confidence to excel in your interviews. You will also receive access to join IBM’s Talent Network where you’ll see job opportunities as soon as they are posted, recommendations matched to your skills and interests, and tips and tricks to help you stand apart from the crowd. \r\n\r\nThis program is ACE® and FIBAA recommended —when you complete, you can earn up to 12 college credits and 6 ECTS credits.\r\n\r\nApplied Learning Project\r\n\r\nThis Professional Certificate has a strong emphasis on applied learning and includes a series of hands-on labs in the IBM Cloud that give you practical skills with applicability to real jobs. You'll also have the option to learn how generative AI tools and techniques are used in data science.\r\n\r\nTools you’ll use: Jupyter / JupyterLab, GitHub, R Studio, and Watson Studio\r\n\r\nLibraries you’ll use: Pandas, NumPy, Matplotlib, Seaborn, Folium, ipython-sql, Scikit-learn, ScipPy, etc.\r\n\r\nProjects you’ll complete:\r\n\r\nExtract and graph financial data with the Pandas Python library\r\n\r\nUse SQL to query census, crime, and school demographic data sets\r\n\r\nWrangle data, graph plots, and create regression models to predict housing prices with data science Python libraries\r\n\r\nCreate a dynamic Python dashboard to improve US domestic flight reliability\r\n\r\nApply machine learning classification algorithms to predict whether a loan case will be paid off\r\n\r\nTrain and compare machine learning models",
+    "outcomes": "Master the most up-to-date practical skills and knowledge that data scientists use in their daily roles\r\n\r\n\r\n\r\nLearn the tools, languages, and libraries used by professional data scientists, including Python and SQL\r\n\r\n\r\nImport and clean data sets, analyze and visualize data, and build machine learning models and pipelines\r\n\r\n\r\nApply your new skills to real-world projects and build a portfolio of data projects that showcase your proficiency to employers",
+    "skills": "Unsupervised Learning\r\nExploratory Data Analysis\r\nSQL\r\nData Manipulation\r\nSupervised Learning\r\nData Visualization\r\nData Literacy\r\nProfessional Networking\r\nData Wrangling\r\nInteractive Data Visualization\r\nData Mining\r\nData Cleansing\r\nData Import/Export\r\nData Visualization Software\r\nData Transformation\r\nData Analysis",
+    "tools": "Dashboard\r\nGenerative AI\r\nPlotly\r\nJupyter",
+    "requirements": "have good english",
+    "language": "English",
+    "certificate": "Completion Certificate",
+    "languages_available": "English",
+    "last_updated": "2025-08-18",
+    "exercises_count": 8,
+    "updated_at": "2025-08-19T07:28:09.596Z"
+  }
+},
+{
+  "model": "myapp.course_detail",
+  "pk": 4,
+  "fields": {
+    "course": 11,
+    "instructor": "Dr. Ananya Sharma",
+    "instructor_bio": "An experienced data scientist with 12+ years in analytics, AI, and big data.",
+    "short_description": "Learn Data Science Fundamentals from industry experts",
+    "overview": "This course provides a comprehensive introduction to the world of data science. Students will learn the fundamental concepts of data collection, cleaning, visualization, and statistical modeling. By the end, learners will have the ability to derive insights from complex datasets and communicate findings effectively.\n\nThe course emphasizes practical application with Python, Pandas, and NumPy, supported by case studies drawn from business and healthcare.",
+    "outcomes": "Understand the basics of data science\nLearn to clean and preprocess datasets\nBuild and evaluate predictive models",
+    "skills": "Python\nSQL\nStatistics\nMachine Learning",
+    "tools": "Pandas\nNumPy\nJupyter Notebook\nMatplotlib",
+    "requirements": "Basic programming knowledge recommended",
+    "language": "English",
+    "certificate": "Certified Data Science Practitioner",
+    "languages_available": "English, Hindi",
+    "last_updated": null,
+    "exercises_count": 20,
+    "updated_at": "2025-08-19T14:29:51.767Z"
+  }
+},
+{
+  "model": "myapp.course_detail",
+  "pk": 5,
+  "fields": {
+    "course": 12,
+    "instructor": "Rahul Mehta",
+    "instructor_bio": "Senior software engineer specializing in scalable web systems and cloud applications.",
+    "short_description": "Learn Full-Stack Web Development from industry experts",
+    "overview": "This program covers modern web technologies and full-stack development practices. It takes learners from basic HTML, CSS, and JavaScript to advanced back-end development with Django and REST APIs. The curriculum focuses on industry best practices, testing, and deployment.\n\nBy building real-world projects, learners gain practical experience and portfolio-ready applications.",
+    "outcomes": "Build responsive web applications\nUnderstand client-server architecture\nDeploy apps to cloud platforms",
+    "skills": "HTML\nCSS\nJavaScript\nDjango\nREST APIs",
+    "tools": "VS Code\nPostman\nDocker\nGitHub",
+    "requirements": "No prerequisites; enthusiasm to learn coding",
+    "language": "English",
+    "certificate": "Full-Stack Developer Certificate",
+    "languages_available": "English, Spanish",
+    "last_updated": null,
+    "exercises_count": 30,
+    "updated_at": "2025-08-19T14:29:51.773Z"
+  }
+},
+{
+  "model": "myapp.course_detail",
+  "pk": 6,
+  "fields": {
+    "course": 13,
+    "instructor": "Dr. Kavita Iyer",
+    "instructor_bio": "AI researcher with 15 years of academic and industry experience in machine learning and natural language processing.",
+    "short_description": "Learn Machine Learning with Python from industry experts",
+    "overview": "This course introduces the principles of machine learning using Python. Learners explore supervised and unsupervised techniques, model evaluation, and real-world applications. Case studies include recommendation systems, fraud detection, and NLP.\n\nThe curriculum emphasizes hands-on labs and assignments using scikit-learn and TensorFlow.",
+    "outcomes": "Implement supervised ML algorithms\nApply unsupervised clustering\nEvaluate models with cross-validation",
+    "skills": "Python\nLinear Algebra\nNeural Networks",
+    "tools": "Scikit-learn\nTensorFlow\nKeras\nMatplotlib",
+    "requirements": "Understanding of Python required",
+    "language": "English",
+    "certificate": "Machine Learning Specialist Certificate",
+    "languages_available": "English, French",
+    "last_updated": null,
+    "exercises_count": 25,
+    "updated_at": "2025-08-19T14:29:51.779Z"
+  }
+},
+{
+  "model": "myapp.course_detail",
+  "pk": 7,
+  "fields": {
+    "course": 14,
+    "instructor": "Neha Kapoor",
+    "instructor_bio": "Marketing strategist with 10 years’ experience in SEO, social media, and brand growth.",
+    "short_description": "Learn Digital Marketing Strategy from industry experts",
+    "overview": "This course equips learners with the skills to plan, execute, and optimize digital marketing campaigns. Topics include SEO, content marketing, social media strategy, paid advertising, and analytics.\n\nThrough real-world case studies, learners practice designing campaigns tailored for business growth and measurable ROI.",
+    "outcomes": "Develop a complete digital marketing strategy\nUse analytics to track performance\nOptimize ad spend effectively",
+    "skills": "SEO\nContent Marketing\nSocial Media Marketing",
+    "tools": "Google Analytics\nCanva\nSEMrush\nHootsuite",
+    "requirements": "Basic computer literacy",
+    "language": "English",
+    "certificate": "Digital Marketing Professional Certificate",
+    "languages_available": "English",
+    "last_updated": null,
+    "exercises_count": 15,
+    "updated_at": "2025-08-19T14:29:51.785Z"
+  }
+},
+{
+  "model": "myapp.course_detail",
+  "pk": 8,
+  "fields": {
+    "course": 15,
+    "instructor": "Arjun Malhotra",
+    "instructor_bio": "Cloud solutions architect specializing in AWS, Azure, and DevOps practices.",
+    "short_description": "Learn Cloud Computing Essentials from industry experts",
+    "overview": "This course introduces the fundamentals of cloud computing and its role in modern IT infrastructure. Learners gain insights into virtualization, cloud service models, and deployment strategies.\n\nPractical labs include setting up virtual servers, using storage services, and configuring security policies.",
+    "outcomes": "Understand cloud service models\nDeploy applications on cloud\nManage scalability and security",
+    "skills": "Cloud Infrastructure\nNetworking\nDevOps",
+    "tools": "AWS\nAzure\nDocker\nKubernetes",
+    "requirements": "Basic IT knowledge helpful",
+    "language": "English",
+    "certificate": "Cloud Practitioner Certificate",
+    "languages_available": "English, German",
+    "last_updated": null,
+    "exercises_count": 18,
+    "updated_at": "2025-08-19T14:29:51.791Z"
+  }
+}
