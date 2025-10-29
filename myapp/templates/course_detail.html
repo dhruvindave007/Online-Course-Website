@@ -1,94 +1,468 @@
 {% extends "base.html" %}
+{% load static %}
+{% block title %}{{ course.title }}{% endblock %}
+
 {% block content %}
 <div class="course-body">
-<div class="course-page">
+  <div class="course-page">
 
-  <!-- LEFT COLUMN: Main course info -->
-  <div class="course-main">
+    <!-- LEFT: course content -->
+    <div class="course-main">
 
-    <!-- Overview -->
-    <section class="course-overview course-section">
+      <section class="course-overview course-section">
         <h2>About this course</h2>
         {% for line in course.details.get_overview %}
-            <p>{{ line }}</p>
+          <p>{{ line }}</p>
+        {% empty %}
+          <p>No overview available.</p>
         {% endfor %}
-    </section>
+      </section>
 
-    <!-- Learning Outcomes -->
-    <section class="course-outcomes course-section">
+      <section class="course-outcomes course-section">
         <h2>What you'll learn</h2>
+        {% if course.details.outcomes %}
         <ul>
-            {% for outcome in course.details.get_outcomes %}
-                <li>{{ outcome }}</li>
-            {% endfor %}
+          {% for outcome in course.details.get_outcomes %}
+            <li>{{ outcome }}</li>
+          {% endfor %}
         </ul>
-    </section>
+        {% else %}
+          <p>No outcomes listed.</p>
+        {% endif %}
+      </section>
 
-    <!-- Skills -->
-    <section class="course-skills course-section">
+      <section class="course-skills course-section">
         <h2>Skills you'll gain</h2>
+        {% if course.details.skills %}
         <ul>
-            {% for skill in course.details.get_skills %}
-                <li>{{ skill }}</li>
-            {% endfor %}
+          {% for skill in course.details.get_skills %}
+            <li>{{ skill }}</li>
+          {% endfor %}
         </ul>
-    </section>
+        {% else %}
+          <p>No skills listed.</p>
+        {% endif %}
+      </section>
 
-    <section class="course-skills course-section">
+      <section class="course-tools course-section">
         <h2>Tools used</h2>
+        {% if course.details.tools %}
         <ul>
-            {% for tools in course.details.get_tools %}
-                <li>{{ tools }}</li>
-            {% endfor %}
+          {% for tool in course.details.get_tools %}
+            <li>{{ tool }}</li>
+          {% endfor %}
         </ul>
-    </section>
+        {% else %}
+          <p>No tools listed.</p>
+        {% endif %}
+      </section>
 
-    <section class="course-skills course-section">
+      <section class="course-requirements course-section">
         <h2>Requirements</h2>
         <ul>
-            {% for requirements in course.details.get_requirements %}
-                <li>{{ requirements }}</li>
-            {% endfor %}
+          {% for req in course.details.get_requirements %}
+            <li>{{ req }}</li>
+          {% empty %}
+            <li>No requirements listed.</li>
+          {% endfor %}
         </ul>
-    </section>
+      </section>
 
-    <!-- Modules -->
-    <section class="course-modules course-section">
-    <h2>Modules</h2>
-    <a href="{% url 'module_list' course.slug %}">View ALL Modules</a>
-</section>
+      <section class="course-modules course-section">
+        <h2>Modules</h2>
+        <a href="{% url 'module_list' course.slug %}" class="btn-primary">View ALL Modules</a>
+      </section>
 
+    </div>
+
+    <!-- RIGHT: sidebar -->
+    <aside class="course-sidebar">
+      {% if course.image %}
+        <img src="{{ course.image.url }}" alt="{{ course.title }}" style="width:100%; border-radius:6px; margin-bottom:12px;">
+      {% endif %}
+
+      <h1>{{ course.title }}</h1>
+      <p class="short-description">{{ course.details.short_description }}</p>
+
+      <div class="course-meta" style="margin-top:12px;">
+        <p><strong>Price:</strong> ${{ course.price }}</p>
+        <p><strong>Duration:</strong> {{ course.duration }}</p>
+        <p><strong>Language:</strong> {{ course.details.language }}</p>
+      </div>
+
+        {% if user.is_authenticated %}
+
+          {# Enrollment area #}
+          {% if enrolled %}
+            <div style="font-weight:600">You are already enrolled</div>
+
+            {# Unenroll via POST form for safety #}
+            <form method="POST" action="{% url 'unenroll_course' course.slug %}">
+              {% csrf_token %}
+              <button type="submit" class="btn">Unenroll</button>
+            </form>
+
+          {% else %}
+            <form method="POST" action="{% url 'enroll_course' course.slug %}">
+              {% csrf_token %}
+              <button type="submit" class="btn">Enroll Now</button>
+            </form>
+          {% endif %}
+
+          
+          {# Wishlist area: server-rendered state #}
+          {% if wishlisted %}
+            {# Remove from wishlist (POST) #}
+            <form method="POST" action="{% url 'remove_from_wishlist' slug=course.slug %}">
+              {% csrf_token %}
+              <button type="submit" class="btn-secondary">Remove from Wishlist</button>
+            </form>
+          {% else %} 
+            {# Add to wishlist (POST) #}
+            <form method="POST" action="{% url 'add_to_wishlist' slug=course.slug %}">
+              {% csrf_token %}
+              <button type="submit" class="btn-secondary">Add to Wishlist</button>
+            </form>
+          {% endif %}
+
+        {% else %}
+          <a href="{% url 'login' %}?next={{ request.path|urlencode }}" class="btn">Login to enroll</a>
+          <a href="{% url 'login' %}?next={{ request.path|urlencode }}" class="btn-secondary">Login to wishlist</a>
+        {% endif %}
+      </div>
+    </aside>
 
   </div>
+</div>
 
-  <!-- RIGHT COLUMN: Sidebar -->
-  <aside class="course-sidebar">
-      <img src="{{ course.image.url }}" alt="{{ course.title }}">
-      <h1>{{ course.title }}</h1>
-      <p>{{ course.details.short_description }}</p>
-      <p><strong>Price:</strong> ${{ course.price }}</p>
-      <p><strong>Duration:</strong> {{ course.duration }}</p>
-      <p><strong>Language:</strong> {{ course.details.language }}</p>
+<!-- Wishlist Popup -->
+<div id="wishlistPopup" class="wishlist-popup" role="dialog" aria-hidden="true">
+  <div class="wishlist-popup-card" role="document">
+    <p id="wishlistPopupMessage">Added to wishlist!</p>
+    <div class="wishlist-popup-actions">
+      <a href="{% url 'wishlist_page' %}" class="btn">View Wishlist</a>
+      <button id="closeWishlist" class="btn-secondary" type="button">Close</button>
+    </div>
+  </div>
+</div>
 
-      {% if user.is_authenticated %}
-          {% if enrolled %}
-              <p><strong>You are already enrolled  </strong><a href="{% url 'module_list' course.slug %}">View Modules</a></p>
-              <a href="{% url 'unenroll_course' course.slug  %}" class="btn-unenroll">Unenroll</a>  
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const popup = document.getElementById('wishlistPopup');
+  const message = document.getElementById('wishlistPopupMessage');
+  const closeBtn = document.getElementById('closeWishlist');
 
+  // Attach popup display for wishlist forms
+  const wishlistForms = document.querySelectorAll('form[action*="wishlist/add/"], form[action*="wishlist/remove/"]');
+  wishlistForms.forEach(form => {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // prevent instant redirect
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+      .then(res => res.ok ? res.json().catch(()=>({})) : {})
+      .finally(() => {
+        // Show popup
+        popup.classList.add('visible');
+        popup.setAttribute('aria-hidden', 'false');
+        message.textContent = form.action.includes('remove') 
+          ? 'Removed from wishlist!' 
+          : 'Added to wishlist!';
+      });
+    });
+  });
+
+  // Close button
+  closeBtn.addEventListener('click', () => {
+    popup.classList.remove('visible');
+    popup.setAttribute('aria-hidden', 'true');
+  });
+});
+</script>
+
+{% endblock %}
+
+{% endblock %}
+
+
+
+
+{% comment %} {% extends "base.html" %}
+{% load static %}
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="course-body">
+  <div class="course-page">
+
+    <!-- LEFT -->
+    <div class="course-main">
+
+      <section class="course-overview course-section">
+          <h2>About this course</h2>
+          {% for line in course.details.get_overview %}
+              <p>{{ line }}</p>
+          {% empty %}
+              <p>No overview available.</p>
+          {% endfor %}
+      </section>
+
+      <section class="course-outcomes course-section">
+          <h2>What you'll learn</h2>
+          {% if course.details.outcomes %}
+          <ul>
+              {% for outcome in course.details.get_outcomes %}
+                  <li>{{ outcome }}</li>
+              {% endfor %}
+          </ul>
+          {% else %}
+            <p>No outcomes listed.</p>
+          {% endif %}
+      </section>
+
+      <section class="course-skills course-section">
+          <h2>Skills you'll gain</h2>
+          {% if course.details.skills %}
+          <ul>
+              {% for skill in course.details.get_skills %}
+                  <li>{{ skill }}</li>
+              {% endfor %}
+          </ul>
+          {% else %}
+            <p>No skills listed.</p>
+          {% endif %}
+      </section>
+
+      <section class="course-skills course-section">
+          <h2>Tools used</h2>
+          {% if course.details.tools %}
+          <ul>
+              {% for tool in course.details.get_tools %}
+                  <li>{{ tool }}</li>
+              {% endfor %}
+          </ul>
+          {% else %}
+            <p>No tools listed.</p>
+          {% endif %}
+      </section>
+
+      <section class="course-skills course-section">
+          <h2>Requirements</h2>
+          <ul>
+              {% for req in course.details.get_requirements %}
+                  <li>{{ req }}</li>
+              {% empty %}
+                <li>No requirements listed.</li>
+              {% endfor %}
+          </ul>
+      </section>
+
+      <section class="course-modules course-section">
+        <h2>Modules</h2>
+        <a href="{% url 'module_list' course.slug %}" class="btn-secondary">View ALL Modules</a>
+      </section>
+
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="course-sidebar">
+        {% if course.image %}
+          <img src="{{ course.image.url }}" alt="{{ course.title }}" style="width:100%; border-radius:6px; margin-bottom:12px;">
+        {% endif %}
+        <h1>{{ course.title }}</h1>
+        <p class="short-description">{{ course.details.short_description }}</p>
+
+        <div class="course-meta" style="margin-top:12px;">
+          <p><strong>Price:</strong> ${{ course.price }}</p>
+          <p><strong>Duration:</strong> {{ course.duration }}</p>
+          <p><strong>Language:</strong> {{ course.details.language }}</p>
+        </div>
+
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+          {% if user.is_authenticated %}
+              {% if enrolled %}
+                  <div style="font-weight:600">You are already enrolled</div>
+                  <a href="{% url 'module_list' course.slug %}" class="btn">View Modules</a>
+                  <a href="{% url 'unenroll_course' course.slug %}" class="btn-secondary">Unenroll</a>
+              {% else %}
+                  <form method="POST" action="{% url 'enroll_course' course.slug %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn">Enroll Now</button>
+                  </form>
+              {% endif %}
+
+              {# Wishlist button renders based on server state (wishlisted) #}
+              {% if wishlisted %}
+                <button id="wishlistBtn" data-course-slug="{{ course.slug }}" class="btn-secondary wishlisted" type="button">
+                   Remove from Wishlist
+                </button>
+
+                {# Non-JS fallback remove form #}
+                <noscript>
+                  <form method="POST" action="{% url 'remove_from_wishlist' slug=course.slug %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-secondary">Remove from Wishlist</button>
+                  </form>
+                </noscript>
 
               {% else %}
-              <form method="POST" action="{% url 'enroll_course' course.slug %}">
-                  {% csrf_token %}
-                  <button type="submit" class="btn">Enroll Now</button>
-              </form>
-          {% endif %}
-      {% else %}
-          <a href="{% url 'login' %}">Login to enroll</a>
-      {% endif %}
-  </aside>
+                <button id="wishlistBtn" data-course-slug="{{ course.slug }}" class="btn-secondary" type="button">
+                   Add to Wishlist
+                </button>
 
+                {# Non-JS fallback add form #}
+                <noscript>
+                  <form method="POST" action="{% url 'add_to_wishlist' slug=course.slug %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-secondary">Add to Wishlist</button>
+                  </form>
+                </noscript>
+
+              {% endif %}
+
+          {% else %}
+              <a href="{% url 'login' %}?next={{ request.path|urlencode }}" class="btn">Login to enroll</a>
+              <a href="{% url 'login' %}?next={{ request.path|urlencode }}" class="btn-secondary">Login to wishlist</a>
+          {% endif %}
+        </div>
+    </aside>
+
+  </div>
 </div>
+
+<!-- small in-page popup for feedback -->
+<div id="wishlistPopup" class="wishlist-popup" role="dialog" aria-hidden="true" style="display:none;">
+  <div class="wishlist-popup-card" role="document">
+    <p id="wishlistPopupMessage">Added to wishlist</p>
+    <div class="actions" style="margin-top:10px;">
+      <a id="gotoWishlist" href="{% url 'wishlist_page' %}" class="btn">View wishlist</a>
+      <button id="closeWishlist" class="btn-secondary">Close</button>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
 
+{% block extra_js %}
+<script>
+/* CSRF helper */
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let c of cookies) {
+      c = c.trim();
+      if (c.startsWith(name + '=')) {
+        cookieValue = decodeURIComponent(c.slice(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+/* Popup helpers */
+const popup = document.getElementById('wishlistPopup');
+const popupMsg = document.getElementById('wishlistPopupMessage');
+const closeBtn = document.getElementById('closeWishlist');
+function showPopup(msg) {
+  if (!popup || !popupMsg) return;
+  popupMsg.textContent = msg;
+  popup.style.display = 'block';
+  popup.setAttribute('aria-hidden', 'false');
+  setTimeout(()=> {
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden', 'true');
+  }, 2200);
+}
+if (closeBtn) closeBtn.addEventListener('click', ()=> { popup.style.display='none'; popup.setAttribute('aria-hidden','true'); });
+
+/* Wishlist toggle (AJAX, keeps DB state persistent so refresh reflects it) */
+(function() {
+  const btn = document.getElementById('wishlistBtn');
+  if (!btn) return;
+
+  async function postJson(url) {
+    const resp = await fetch(url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'X-CSRFToken': csrftoken,
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    });
+    return resp;
+  }
+
+  btn.addEventListener('click', async function(ev) {
+    ev.preventDefault();
+    const slug = this.dataset.courseSlug;
+    const isCurrentlyWishlisted = this.classList.contains('wishlisted');
+    const addUrl = `/course/${encodeURIComponent(slug)}/wishlist/add/`;
+    const removeUrl = `/course/${encodeURIComponent(slug)}/wishlist/remove/`;
+
+    // Disable while processing
+    btn.disabled = true;
+    const oldText = btn.innerText;
+
+    try {
+      const resp = await postJson(isCurrentlyWishlisted ? removeUrl : addUrl);
+
+      // If server redirected HTML (e.g. login page), force full navigation
+      const ct = resp.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) {
+        // likely not authenticated — redirect to login
+        window.location.href = "{% url 'login' %}?next={{ request.path|urlencode }}";
+        return;
+      }
+
+      const data = await resp.json();
+
+      if (!isCurrentlyWishlisted) {
+        // add flow
+        if (data.created === true) {
+          btn.classList.add('wishlisted');
+          btn.innerText = 'Remove from Wishlist';
+          showPopup('Added to wishlist');
+        } else {
+          // created=false means already existed
+          btn.classList.add('wishlisted');
+          btn.innerText = 'Remove from Wishlist';
+          showPopup('Already in wishlist');
+        }
+      } else {
+        // remove flow
+        if (data.deleted_count && data.deleted_count > 0) {
+          btn.classList.remove('wishlisted');
+          btn.innerText = 'Add to Wishlist';
+          showPopup('Removed from wishlist');
+        } else {
+          // nothing deleted: still switch UI anyway
+          btn.classList.remove('wishlisted');
+          btn.innerText = 'Add to Wishlist';
+          showPopup('Removed from wishlist');
+        }
+      }
+    } catch (err) {
+      console.error('Wishlist request failed', err);
+      showPopup('Network error — try again');
+      btn.innerText = oldText;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
+
+
+{% endblock %}
+ {% endcomment %}

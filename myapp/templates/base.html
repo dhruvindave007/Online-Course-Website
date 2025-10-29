@@ -36,15 +36,21 @@ document.addEventListener('DOMContentLoaded', function() {
     {% block header1 %}
     {% include "header.html" %}
     {% endblock header1 %}
-   
+
+   {% if user.is_authenticated and user.is_staff %}
+  <a href="{% url 'suggestion_list' %}">Manage Suggestions</a>
+{% endif %}
+
    {% block content %}
    default content
    {% endblock content %}
+   
 
 
    {% block footer %}
    {% include "footer.html" %}
    {% endblock footer %}
+   {% block extra_js %}{% endblock %}
 
 </body>
 </html>

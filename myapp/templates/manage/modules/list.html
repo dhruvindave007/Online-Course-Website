@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Modules (Sections)</h1>
+<a href="{% url 'module_create' %}" class="btn">Create Module</a>
+<table>
+  <thead><tr><th>ID</th><th>Course</th><th>Title</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for m in modules %}
+      <tr>
+        <td>{{ m.pk }}</td>
+        <td>{{ m.course.title }}</td>
+        <td>{{ m.title }}</td>
+        <td>
+          <a href="{% url 'module_update' m.pk %}">Edit</a> |
+          <a href="{% url 'module_delete' m.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No modules yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

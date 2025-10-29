@@ -1,59 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 
 /* ========================
    General & Typography
 ======================== */
 body {
-    background-color: #fafafa;
+    /* A soft, vibrant gradient background is key for the glass effect to pop */
+    background-image: url('https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/images/48a7c37e24e85b78e497c5667b2d7b56.png?auto=format%2Ccompress&dpr=1&q=80');
+    background: linear-gradient(135deg, #a8e0ff 0%, #ffb3b8 100%);
     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: #1d1d1f; /* A slightly softer, Apple-like black for text */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-attachment: fixed; /* Keeps the gradient still during scroll */
 }
 
-h3 {
+h1, h2, h3 {
     font-weight: 600;
-    color: #1f1f1f;
+    color: #111;
     margin-bottom: 0.5rem;
+    font-family: 'Poppins', Arial, sans-serif;
 }
 
- h1 {
-     text-align: center;
-     font-weight: 600;
-    color: #1f1f1f;
-     font-family: poppins, Arial, sans-serif;
- }
+h1, h2 {
+    text-align: center;
+}
 
- h2 {
-     text-align: center;
-     font-weight: 600;
-    color: #1f1f1f;
-     font-family: poppins, Arial, sans-serif;
- }
+nav {
+    text-align: center;
+    /* Applying the glass effect to the nav */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1em;
+}
 
- nav {
-     text-align: center;
-     background-color: #ffffff;
-     padding: 1em;
- }
-
-
-
- p {
-     color:#444;
-     font-family: poppins, Arial, sans-serif;
-
- }
+p {
+    color: #333;
+    font-family: 'Poppins', Arial, sans-serif;
+}
 
 a {
-    color: #0056d2;
+    color: #007aff; /* Apple's system blue for links */
     text-decoration: none;
-    transition: text-decoration 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
-
+a:hover {
+    opacity: 0.7;
+}
 
 ul {
     list-style: none;
@@ -69,48 +68,72 @@ li {
 /* ========================
    Buttons
 ======================== */
-.btn, .btn-login, .btn-register, .enroll-btn {
-    background-color: #0056d2;
+.btn,
+.btn-login,
+.btn-register,
+.enroll-btn,
+.btn-submit,
+.browsebtn {
+    background-color: #007aff; /* System blue */
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 99px; /* Pill-shaped buttons are very modern */
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease;
     text-decoration: none;
     display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
 }
 
-.btn:hover, .btn-login:hover, .btn-register:hover, .enroll-btn:hover {
-    background-color: #0041a8;
+.btn:hover,
+.btn-login:hover,
+.btn-register:hover,
+.enroll-btn:hover,
+.btn-submit:hover,
+.browsebtn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ccc;
+    /* Glass button for secondary actions */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: #111;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 99px;
     font-weight: 500;
     transition: background-color 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background-color: #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.4);
 }
-.btn-unenroll{
-    background-color: #ff5e00;
+
+.btn-unenroll,
+.removebtn {
+    background-color: #ff3b30; /* Apple's system red */
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 99px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 59, 48, 0.2);
+}
+
+.btn-unenroll:hover,
+.removebtn:hover {
+    background-color: #c70000;
+    transform: translateY(-2px);
 }
 
 /* ========================
@@ -124,50 +147,122 @@ li {
     top: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: #ff0000;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ff3b30;
+    border-radius: 99px; /* Pill shape */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.home-logout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 59, 48, 0.3);
 }
 
 footer {
     width: 100%;
-    padding: 10px 0;
-    background-color: #acacac;
+    padding: 15px 0;
+    /* Glassy footer */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 15px;
     text-align: center;
     line-height: 24px;
-    color: #000000;
+    color: #1d1d1f;
+}
+
+/* ========================
+   Cards & Containers (Glassmorphism Effect)
+======================== */
+.login-card,
+.register-card,
+.module-card,
+.course-sidebar,
+.course-section,
+.quiz-form,
+.question-card,
+.score-card,
+.review-section,
+.wishlist-card-horizontal,
+.suggested-section{
+    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 20px; /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wishlist-popup-card{
+    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 30px; /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* should be fixed size of all card */
+.card{
+    height: 400px;
+    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 20px; /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-section {
+    background: none; /* No glass effect for category section */
+    padding: 2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 300px;
+
+}
+.wishlist-popup-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.wishlist-popup-card{
+    text-align: center;
 }
 
 /* ========================
    Login & Register Pages
 ======================== */
-.login-container, .register-container {
+.login-container,
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f8f9fa;
+    /* The background is already set on the body */
 }
 
-.login-card, .register-card {
-    background: #fff;
+.login-card,
+.register-card {
     padding: 2.5rem 2rem;
-    border-radius: 8px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
     max-width: 450px;
     width: 100%;
     text-align: center;
 }
 
-.login-title, .register-title {
+.login-title,
+.register-title {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: #1f1f1f;
+    color: #111;
 }
 
-.login-form, .register-form {
+.login-form,
+.register-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -175,54 +270,62 @@ footer {
     color: #333;
 }
 
-.login-form .form-group, .register-form .form-group {
+.login-form .form-group,
+.register-form .form-group {
     width: 100%;
     text-align: left;
 }
 
-.login-form input, .register-form input {
+.login-form input,
+.register-form input {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    background: rgba(230, 230, 230, 0.5); /* Semi-transparent input fields */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px; /* Softer radius for inputs */
     font-size: 1rem;
     margin-top: 0.4rem;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.register-text, .login-text {
+.login-form input:focus,
+.register-form input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5); /* Focus ring */
+}
+
+.register-text,
+.login-text {
     margin-top: 1.5rem;
     font-size: 0.95rem;
     color: #555;
 }
 
-.register-link, .login-link {
-    color: #0056d2;
+.register-link,
+.login-link {
+    color: #007aff;
     font-weight: 500;
     text-decoration: none;
 }
 
-.register-link:hover, .login-link:hover {
+.register-link:hover,
+.login-link:hover {
     text-decoration: underline;
 }
-
-
 
 /* =================
 Course Category 
 =====================*/
-/* Category Section */
 .category-section {
     padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .category-heading {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #333;
+    color: #111;
     margin-bottom: 1.5rem;
     text-align: center;
 }
@@ -238,15 +341,18 @@ Course Category
 }
 
 .category-item {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .category-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .category-link {
@@ -254,24 +360,24 @@ Course Category
     padding: 1rem 1.5rem;
     font-size: 1rem;
     font-weight: 500;
-    color: #0056d2;
+    color: #007aff;
     text-decoration: none;
     white-space: nowrap;
 }
 
 .no-category {
-    color: #888;
+    color: #555;
     font-style: italic;
     text-align: center;
     width: 100%;
 }
 
-
-
 /* ========================
    Course Listings & Modules
 ======================== */
-.modules-container, .course-detail {
+.modules-container,
+.course-detail {
+    background-image: url('https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/images/48a7c37e24e85b78e497c5667b2d7b56.png?auto=format%2Ccompress&dpr=1&q=80');
     max-width: 1100px;
     margin: 2rem auto;
     padding: 0 1.5rem;
@@ -284,17 +390,72 @@ Course Category
 }
 
 .module-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
-    border: 1px solid #eee;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .module-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+}
+
+/* ========================
+   Pagination styles
+   - desktop: compact range with ellipses
+   - mobile: select dropdown for quick jump
+======================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.pagination-desktop {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pagination-mobile {
+    display: none; /* hidden on desktop */
+}
+
+.page-link {
+    display: inline-block;
+    padding: 0.45rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.6);
+    color: #111;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.06);
+    font-weight: 600;
+}
+
+.page-link.current {
+    background: #007aff;
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(0,122,255,0.18);
+}
+
+.page-dots {
+    padding: 0.45rem 0.5rem;
+    color: #666;
+}
+
+/* Mobile: show select and hide desktop links */
+@media (max-width: 768px) {
+    .pagination-desktop { display: none; }
+    .pagination-mobile { display: block; }
+    .pagination-mobile select {
+        /* dropdown should be exact above the page-select location */
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid rgba(0,0,0,0.1);
+        font-size: 1rem;
+        background: rgba(255,255,255,0.6);
+
+    }
 }
 
 .page-title {
@@ -305,7 +466,8 @@ Course Category
 .empty-message {
     text-align: center;
     font-style: italic;
-    color: #777;
+    color: #555;
+    padding: 18px 0;
 }
 
 .back-link {
@@ -317,9 +479,8 @@ Course Category
    Course Details Page
 ======================== */
 .course-body {
-    background-image: url('https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/images/48a7c37e24e85b78e497c5667b2d7b56.png?auto=format%2Ccompress&dpr=1&q=80');
-    background-repeat:inherit;
-    background-position: 100px;
+    /* We'll use the body's gradient instead of a fixed image for a cleaner glass effect */
+    background-image: none;
 }
 
 .course-page {
@@ -338,11 +499,7 @@ Course Category
 }
 
 .course-sidebar {
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 2rem;
     align-self: start;
@@ -352,7 +509,7 @@ Course Category
 .course-sidebar img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 12px; /* Consistent radius */
     margin-bottom: 1rem;
 }
 
@@ -363,32 +520,36 @@ Course Category
 
 .course-sidebar p {
     margin: 0.5rem 0;
-    color: #444;
+    color: #333;
 }
 
-.course-sidebar button, .course-sidebar a {
-    width: 100%;
+.course-sidebar button,
+.course-sidebar a {
     text-align: center;
 }
 
+.course-heading {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 .course-section {
-    background: #fff;
     padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #eee;
 }
 
 .course-section h2 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
-    color: #222;
-    border-left: 4px solid #0056d2;
+    color: #111;
+    border-left: 4px solid #007aff;
     padding-left: 0.75rem;
 }
 
 .course-outcomes ul li::before {
     content: "✔";
-    color: #0056d2;
+    color: #34c759; /* Apple's system green */
     margin-right: 0.5rem;
     font-weight: bold;
 }
@@ -400,15 +561,15 @@ Course Category
 }
 
 .course-skills li {
-    background-color: #f0f7ff;
-    border: 1px solid #d6e4ff;
+    background-color: rgba(0, 122, 255, 0.1);
+    border: 1px solid rgba(0, 122, 255, 0.2);
     color: #0056d2;
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
     border-radius: 16px;
     font-weight: 500;
     white-space: nowrap;
-} 
+}
 
 .course-includes ul {
     display: grid;
@@ -425,41 +586,51 @@ Course Category
     content: "•";
     position: absolute;
     left: 0;
-    color: #0056d2;
+    color: #007aff;
     font-size: 1.2rem;
     line-height: 1;
+}
+
+.course-tools li {
+    background-color: rgba(0, 122, 255, 0.1);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    color: #0056d2;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 500;
+    display: inline;
+}
+.course-requirements ul li::before {
+    content: "✔";
+    color: #34c759; /* Apple's system green */
+    margin-right: 0.5rem;
+    font-weight: bold;
 }
 
 /* ========================
    Quiz & Results Pages
 ======================== */
-/* Quiz & Results Pages */
 .quiz-form {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .question-card {
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .question-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .question-text {
     font-size: 1.15rem;
     font-weight: 600;
-    color: #333;
+    color: #111;
     margin-bottom: 1rem;
 }
 
@@ -472,52 +643,30 @@ Course Category
 .option-item {
     display: flex;
     align-items: center;
-    background: #f0f7ff;
-    border: 1px solid #d6e4ff;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     padding: 1rem;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .option-item:hover {
-    background-color: #e3f0ff;
+    background-color: rgba(112, 112, 112, 0.4);
 }
 
 .option-item input[type="radio"] {
     margin-right: 1rem;
     transform: scale(1.2);
     cursor: pointer;
+    accent-color: #007aff; /* Style the radio button itself */
 }
 
 .option-item label {
     font-size: 1rem;
-    color: #555;
+    color: #333;
     cursor: pointer;
     flex-grow: 1;
-}
-
-.btn-submit {
-    width: 100%;
-    margin-top: 2rem;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-submit:hover {
-    background-color: #0056d2;
-}
-
-.back-link {
-    text-align: center;
-    margin-top: 2rem;
 }
 
 /* ========================
@@ -530,149 +679,108 @@ Course Category
 
     .course-sidebar {
         position: static;
+        /* Glass effect is already applied, no need for extra shadows */
         box-shadow: none;
-        border: none;
-        padding: 1rem 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1rem;
     }
 }
 
- /* Container for all cards */
- .card-container {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
-     gap: 20px;
-     padding: 20px;
-     font-family: poppins, Arial, sans-serif;
- }
+/* Container for all cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    font-family: 'Poppins', Arial, sans-serif;
+}
 
- /* Card styling */
- .card {
-     background-color: #f0f0f0;
-     border-radius: 10px;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-     width: 400px;
-     overflow: hidden;
-     transition: transform 0.2s ease, box-shadow 0.2s ease;
-     display: flex;
-     flex-direction: column;
-     position: relative;
-     margin: 10px;
- }
+/* Card styling */
+.card {
+    width: 400px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 10px;
+    min-height: 390px;
+}
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+}
 
+/* Image section */
 
- .card:hover {
-     transform: translateY(-5px);
-     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
- }
+.card .img img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
 
- /* Image section */
- .card .img img {
-     width: 100%;
-     height: 180px;
-     object-fit: cover;
- }
+}
 
- /* Info section */
- .card .info {
-     padding: 15px;
-     display: flex;
-     flex-direction: column;
-     flex: 1;
- }
+/* Info section */
+.card .info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
- .card .info .title {
-     font-size: 1.2rem;
-     font-weight: 600;
-     margin-bottom: 8px;
-     color: #333;
- }
+.card .info .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #111;
+}
 
- .card .info .desc {
-     font-size: 0.9rem;
-     color: #555;
-     flex: 1;
-     margin-bottom: 15px;
- }
+.card .info .desc {
+    font-size: 0.9rem;
+    color: #333;
+    flex: 1;
+    margin-bottom: 15px;
+}
 
- /* Bottom price + button */
- /* put bottom on bottom of card */
- .card .bottom {
-    bottom: 0;
+.card .bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 15px 15px; /* Add padding to match info */
+}
 
- }
+.card .bottom .price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007aff;
+}
 
- .card .bottom .price {
-     font-size: 1rem;
-     font-weight: bold;
-     color: #1a73e8;
- }
+.duration-container {
+    display: flex;
+}
 
- .duration-container {
-     display: flex;
- }
+.duration-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
 
- .duration-icon {
-     width: 20px;
-     height: 20px;
-     margin-right: 5px;
- }
+.duration {
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
 
- .duration {
-     font-size: 0.9rem;
-     color: #555;
-     display: flex;
-     align-items: center;
- }
+/* Button inside card */
+.card .bottom .btn {
+    padding: 8px 14px;
+    border-radius: 99px;
+}
 
-
- /* Button styling */
- .card .bottom .btn {
-     background: #1a73e8;
-     color: white;
-     border: none;
-     padding: 8px 14px;
-     border-radius: 5px;
-     cursor: pointer;
-     transition: background 0.2s ease;
- }
-
- .card .bottom .btn:hover {
-     background: #1a73e8;
- }
-
- .course-detail {
-     max-width: 1100px;
-     margin: auto;
-     padding: 20px;
-     font-family: Arial, sans-serif;
- }
-
-
- .home-logout {
-     text-decoration: none;
-     color: #ffffff;
-     font-size: 1.2em;
-     position: absolute;
-     top: 20px;
-     right: 20px;
-     padding: 10px 20px;
-     background-color: #ff0000;
-     border-radius: 5px;
-     transition: background-color 0.3s ease, box-shadow 0.3s ease;
- }
-
- form {
-     text-align: center;
-     margin-top: 20px;
-     color: #ffffff;
- }
-
- /* ========================
+/* ========================
    Quiz Results Page
 ======================== */
 .results-container {
@@ -682,24 +790,21 @@ Course Category
 }
 
 .score-card {
-    background: #f0f7ff;
-    border-radius: 10px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
 }
 
 .score-title {
     font-size: 2rem;
-    color: #1a73e8;
+    color: #007aff;
     margin-bottom: 0.5rem;
 }
 
 .score-summary {
     font-size: 3rem;
     font-weight: 700;
-    color: #0041a8;
+    color: #111;
     margin: 0;
 }
 
@@ -710,31 +815,28 @@ Course Category
 }
 
 .review-section {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
 }
 
 .review-title {
     font-size: 1.8rem;
-    color: #333;
-    border-bottom: 2px solid #e0e0e0;
+    color: #111;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
 }
 
 .review-card {
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
 .review-question {
     font-size: 1.1rem;
-    color: #444;
+    color: #111;
     margin-bottom: 1rem;
 }
 
@@ -746,7 +848,7 @@ Course Category
 
 .review-option {
     padding: 0.75rem 1rem;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
@@ -755,13 +857,15 @@ Course Category
 }
 
 .review-option.correct {
-    background-color: #e6f7e6;
-    border: 1px solid #73d13d;
+    background-color: rgba(52, 199, 89, 0.2);
+    border: 1px solid rgba(52, 199, 89, 0.4);
+    color: #1c642f;
 }
 
 .review-option.incorrect {
-    background-color: #fff0f0;
-    border: 1px solid #ff4d4f;
+    background-color: rgba(255, 59, 48, 0.15);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    color: #a62a22;
 }
 
 .status {
@@ -769,14 +873,145 @@ Course Category
 }
 
 .correct-icon {
-    color: #27ae60;
+    color: #34c759;
 }
 
 .incorrect-icon {
-    color: #ff4d4f;
+    color: #ff3b30;
 }
 
-.back-link {
+/* ========================
+   Wishlist
+======================== */
+.wishlist-popup {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px); /* Blur the background behind the popup */
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 9999;
+}
+
+.wishlist-popup.visible {
+    display: flex;
+}
+
+
+.wishlist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Make each wishlist card a horizontal flex container */
+.wishlist-card-horizontal {
+    display: flex;
+    align-items: flex-start;
+    gap: 230px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 20px; /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;}
+
+/* Hover effect remains the same */
+.wishlist-card-horizontal:hover {
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+    transform: translateY(-5px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+/* Image wrapper stays fixed width */
+
+.wishlist-thumb-wrapper {
+    max-width: 180px;
+}
+
+/* Image fills the wrapper nicely */
+
+.wishlist-thumb {
+    width: 360px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Details column */
+.wishlist-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.wishlist-course-title{
+    margin-left: -400px;
+}
+
+.wishlist-body p{
+    font-weight: 600;
+}
+
+.wishlist-desc{
+    margin: 1px;
+}
+
+/* responsive */
+@media (max-width:880px) {
+    .wishlist-card-horizontal {
+        flex-direction: column;
+    }
+
+    .wishlist-thumb-wrapper {
+        max-width: 100%;
+        flex: 0 0 auto;
+    }
+
+    .wishlist-thumb {
+        height: 200px;
+    }
+}
+
+.suggested-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
     text-align: center;
+}
+
+.suggested-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
     margin-top: 2rem;
+    gap: 8px;
+}
+
+.pagination a,
+.pagination span {
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #007aff;
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 10px;
+    font-weight: 600;
 }

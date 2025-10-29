@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}My Wishlist{% endblock %}
+
+{% block content %}
+<div class="wishlist-page container">
+
+  <h1 class="wishlist-title">Your Wishlist</h1>
+
+  {% if items %}
+    <div class="wishlist-list">
+      {% for item in items %}
+        <article class="wishlist-card-horizontal" role="article" aria-labelledby="course-{{ item.course.slug }}">
+          <div class="wishlist-thumb-wrapper">
+            {% if item.course.image %}
+              <a href="{% url 'course_detail' slug=item.course.slug %}">
+                <img class="wishlist-thumb" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
+              </a>
+            {% else %}
+              <div class="wishlist-thumb placeholder"></div>
+            {% endif %}
+          </div>
+
+          <div class="wishlist-body">
+            <h2 id="course-{{ item.course.slug }}" class="wishlist-course-title">
+              <a href="{% url 'course_detail' slug=item.course.slug %}">{{ item.course.title }}</a>
+            </h2>
+
+            <p class="wishlist-desc">
+              {% if item.course.details and item.course.details.short_description %}
+                {{ item.course.details.short_description|truncatechars:220 }}
+              {% else %}
+                {{ item.course.description|truncatechars:220 }}
+              {% endif %}
+            </p>
+
+            <div class="wishlist-meta">
+              <span class="meta-price"><strong>Price:</strong> ${{ item.course.price }}</span>
+              <span class="meta-duration"><strong>Duration:</strong> {{ item.course.duration|default:"—" }}</span>
+              <span class="meta-language"><strong>Language:</strong> {{ item.course.details.language|default:"English" }}</span>
+            </div>
+
+            <div class="wishlist-actions">
+              <a href="{% url 'course_detail' slug=item.course.slug %}" class="btn btn-primary">Go to course</a>
+
+              <form method="POST" action="{% url 'remove_from_wishlist' slug=item.course.slug %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="removebtn">
+                  Remove
+                </button>
+              </form>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-message">You haven't added any courses to your wishlist yet.</p>
+    <div class="bottom-center">
+    <a href="{% url 'home' %}" class="btn btn-primary">Browse Courses</a>
+  {% endif %}
+    </div>
+</div>
+
+{% endblock %}

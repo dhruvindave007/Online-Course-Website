@@ -1,0 +1,48 @@
+ M .vscode/settings.json
+ M db.sqlite3
+ M myapp/__pycache__/admin.cpython-312.pyc
+ M myapp/__pycache__/forms.cpython-312.pyc
+ M myapp/__pycache__/models.cpython-312.pyc
+ M myapp/__pycache__/urls.cpython-312.pyc
+ M myapp/__pycache__/views.cpython-312.pyc
+ M myapp/admin.py
+ M myapp/forms.py
+ M myapp/models.py
+ M myapp/templates/base.html
+ M myapp/templates/category_courses.html
+ M myapp/templates/course_detail.html
+ M myapp/templates/header.html
+ M myapp/templates/home.html
+ M myapp/templates/my_courses.html
+ M myapp/templatetags/__pycache__/custom_tags.cpython-312.pyc
+ M myapp/templatetags/custom_tags.py
+ M myapp/urls.py
+ M myapp/views.py
+ M static/style.css
+?? __pycache__/
+?? db.sqlite3.backup
+?? db.sqlite3.bak
+?? git_status_before_merge.txt
+?? learnapp/__pycache__/asgi.cpython-312.pyc
+?? learnapp/__pycache__/views.cpython-312.pyc
+?? myapp/__pycache__/tests.cpython-312.pyc
+?? myapp/migrations.bak/
+?? myapp/migrations/0002_alter_course_detail_short_description_and_more.py
+?? myapp/migrations/0007_wishlist.py
+?? myapp/migrations/0008_suggestion.py
+?? myapp/migrations/0009_suggestion_slug.py
+?? myapp/migrations/0010_remove_suggestion_courses_remove_suggestion_slug_and_more.py
+?? myapp/migrations/0011_alter_suggestion_course.py
+?? myapp/migrations/0012_alter_suggestion_options_suggestion_created_at_and_more.py
+?? myapp/migrations/0013_alter_suggestion_main_course_and_more.py
+?? myapp/migrations/__pycache__/0002_alter_course_detail_short_description_and_more.cpython-312.pyc
+?? myapp/migrations/__pycache__/0007_wishlist.cpython-312.pyc
+?? myapp/migrations/__pycache__/0008_suggestion.cpython-312.pyc
+?? myapp/migrations/__pycache__/0009_suggestion_slug.cpython-312.pyc
+?? myapp/migrations/__pycache__/0010_remove_suggestion_courses_remove_suggestion_slug_and_more.cpython-312.pyc
+?? myapp/migrations/__pycache__/0011_alter_suggestion_course.cpython-312.pyc
+?? myapp/migrations/__pycache__/0012_alter_suggestion_options_suggestion_created_at_and_more.cpython-312.pyc
+?? myapp/migrations/__pycache__/0013_alter_suggestion_main_course_and_more.cpython-312.pyc
+?? myapp/templates/manage/
+?? myapp/templates/wishlist.html
+?? myapp_migrations_backup.tar.gz

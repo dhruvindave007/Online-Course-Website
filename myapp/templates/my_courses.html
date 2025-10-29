@@ -39,7 +39,9 @@
       
     </li>
   {% empty %}
-    <li>No courses enrolled yet.</li>
+    <p class="empty-message">No Courses enrolled yet.</p>
+    <div class="bottom-center">
+    <a href="{% url 'home' %}" class="btn btn-primary">Browse Courses</a>
   {% endfor %}
 </ul>
 {% endblock content %}
