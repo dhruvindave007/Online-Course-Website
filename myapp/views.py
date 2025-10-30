@@ -117,7 +117,7 @@ def suggested_courses(request):
 # -------- Course Detail --------
 def course_detail(request, slug):
     # use default manager (objects) which now returns all courses
-    course = get_object_or_404(Course.objects.select_related("suggestion"), slug=slug)
+    course = get_object_or_404(Course, slug=slug)
     modules = course.modules.all()
     enrolled = False
     wishlisted = False
