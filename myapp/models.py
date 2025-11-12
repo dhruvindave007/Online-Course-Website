@@ -1,20 +1,30 @@
-# myapp/models.py  (cleaned)
+# models.py
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
-# Manager to hide suggested courses by default (optional)
-class VisibleCourseManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset().filter(suggested_courses__isnull=True)
 
+# ---------------------
+# Manager that hides suggested courses from default queries
+# ---------------------
+class VisibleCourseManager(models.Manager):
+    """
+    Default manager: returns courses that are NOT suggested.
+    So Course.objects.all() will not include suggested courses.
+    Use Course.all_objects to access all courses (including suggested).
+    """
+    def get_queryset(self):
+        return super().get_queryset().filter(suggestedcourse__isnull=True)
+
+
+# -------- User --------
 class CustomUser(AbstractUser):
     contact = models.CharField(max_length=15, blank=True, null=True)
-
     def __str__(self):
         return self.username
 
+# -------- Courses --------
 class Course(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -23,10 +33,11 @@ class Course(models.Model):
     image = models.ImageField(upload_to='static/images/', default='static/images/default.png')
     slug = models.SlugField(unique=True, blank=True, null=True)
     start_date = models.DateField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
-    # default/visible managers
+    # default manager: only non-suggested courses (so "all courses" section won't include suggested ones)
     objects = VisibleCourseManager()
+    # full manager if you ever need to access everything (including suggested)
     all_objects = models.Manager()
 
     def save(self, *args, **kwargs):
@@ -41,7 +52,7 @@ class Course_detail(models.Model):
     course = models.OneToOneField(Course, on_delete=models.CASCADE, related_name="details", null=True, blank=True)
     instructor = models.CharField(max_length=255, null=True, blank=True)
     instructor_bio = models.TextField(blank=True)
-    short_description = models.CharField(max_length=300, blank=True)
+    short_description = models.CharField(max_length=300)
     overview = models.TextField(blank=True)
     outcomes = models.TextField(blank=True, help_text="One outcome per line")
     skills = models.TextField(blank=True, help_text="One skill per line")
@@ -54,6 +65,10 @@ class Course_detail(models.Model):
     exercises_count = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name="courses", blank=True)
+
+    def __str__(self):
+        return f"Details for {self.course.title}"
+
 
     def get_overview(self):
         return [line.strip() for line in self.overview.splitlines() if line.strip()]
@@ -70,9 +85,10 @@ class Course_detail(models.Model):
     def get_requirements(self):
         return [line.strip() for line in self.requirements.splitlines() if line.strip()]
 
+
     def __str__(self):
         return f"Details for {self.course.title}"
-
+    
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -85,35 +101,17 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-# Suggestion connecting main_course -> suggested_course
-class Suggestion(models.Model):
-    main_course = models.ForeignKey(
-        Course,
-        on_delete=models.CASCADE,
-        related_name="suggestions_for"
-    )
-    suggested_course = models.ForeignKey(
-        Course,
-        on_delete=models.CASCADE,
-        related_name="suggested_courses"
-    )
-    description = models.TextField(blank=True, default="")
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-    class Meta:
-        unique_together = ("main_course", "suggested_course")
-        ordering = ("-created_at",)
 
-    def __str__(self):
-        return f"Suggestion: {self.suggested_course.title} for {self.main_course.title}"
-
+# -------- Module / Quiz / Question / Option --------
 class Module(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules',blank=True, null=False)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.title
+
 
 class Quiz(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name="quizzes")
@@ -137,23 +135,26 @@ class Option(models.Model):
     def __str__(self):
         return self.text
 
+# -------- Enrollment --------
 class Enrollment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="enrollments")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="enrollments")
     enrolled_at = models.DateTimeField(auto_now_add=True)
-    is_active = models.BooleanField(default=True)
+    is_active=models.BooleanField(default=True)
 
     class Meta:
         unique_together = ('user', 'course')
 
     def __str__(self):
-        status = "Active" if self.is_active else "Inactive"
+        status="Active" if self.is_active else "Inactive"
         return f"{self.user.username} - {self.course.title} ({status})"
+    
+
 
 class Wishlist(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="wishlists")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="wishlisted_by")
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         unique_together = ("user", "course")
@@ -161,3 +162,21 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"{self.user.username} wishlisted {self.course.title}"
+
+
+# -------- SuggestedCourse --------
+class SuggestedCourse(models.Model):
+    """
+    Marks a course as 'suggested' for the homepage.
+    When a course has a SuggestedCourse entry, it will appear in the suggested section
+    and will be excluded from the "All Courses" section via the VisibleCourseManager.
+    """
+    course = models.OneToOneField(Course, on_delete=models.CASCADE, related_name="suggestedcourse")
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    order = models.IntegerField(default=0, help_text="Display order (lower numbers appear first)")
+
+    class Meta:
+        ordering = ["order", "-created_at"]
+
+    def __str__(self):
+        return f"Suggested: {self.course.title}"

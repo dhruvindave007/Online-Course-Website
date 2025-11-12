@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Category, Suggestion
+from .models import Category, SuggestedCourse
 
 User = get_user_model()
 
@@ -28,16 +28,11 @@ class CategoryForm(forms.ModelForm):
         }
 
 
-from django import forms
-from .models import Suggestion
-
-
-class SuggestionForm(forms.ModelForm):
+class SuggestedCourseForm(forms.ModelForm):
     class Meta:
-        model = Suggestion
-        fields = ["main_course", "suggested_course", "description"]
+        model = SuggestedCourse
+        fields = ["course", "order"]
         widgets = {
-            "description": forms.Textarea(attrs={"rows": 3, "class": "form-control"}),
-            "main_course": forms.Select(attrs={"class": "form-control"}),
-            "suggested_course": forms.Select(attrs={"class": "form-control"}),
+            "course": forms.Select(attrs={"class": "form-control"}),
+            "order": forms.NumberInput(attrs={"class": "form-control"}),
         }

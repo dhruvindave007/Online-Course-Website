@@ -1,0 +1,26 @@
+.section-header {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.manage-link-cat,
+.manage-link-sug {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    display: block;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+/* Add redirect icon using ::after pseudo-element */
+.manage-link-cat::after,
+.manage-link-sug::after {
+    content: "→";
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+}
