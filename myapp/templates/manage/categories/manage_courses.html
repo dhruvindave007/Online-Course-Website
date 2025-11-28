@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="manage-container">
+    <h1 class="manage-title">Manage Courses in '{{ category.name }}'</h1>
+    <a href="{% url 'manage_categories' %}" class="back-link">&larr; Back to Categories</a>
+
+    <div class="manage-section">
+        <h2 class="manage-subtitle">Add Course to Category</h2>
+        <form action="{% url 'add_course_to_category' pk=category.pk %}" method="post" class="add-form">
+            {% csrf_token %}
+            <select name="course_id" class="form-select" required>
+                <option value="">Select a course...</option>
+                {% for course in available_courses %}
+                    <option value="{{ course.id }}">{{ course.title }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn-add">Add Course</button>
+        </form>
+    </div>
+
+    <div class="manage-section">
+        <h2 class="manage-subtitle">Courses in this Category</h2>
+        {% if category_courses %}
+            <ul class="item-list">
+                {% for detail in category_courses %}
+                    <li class="item-row">
+                        <span>{{ detail.course.title }}</span>
+                        <form action="{% url 'remove_course_from_category' pk=category.pk course_detail_id=detail.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-remove">Remove</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="empty-message">No courses have been added to this category yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

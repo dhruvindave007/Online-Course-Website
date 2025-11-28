@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Magage suggestion{% endblock %}
+
+{% block content %}
+<div class="manage-container">
+    <div class="top-nav">
+        <h1 class="page-title">Manage Suggested Courses</h1>
+        <a href="{% url 'home' %}" class="btn-secondary">← Back to Home</a>
+    </div>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="message {{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="manage-section">
+        <h2>Current Suggested Courses</h2>
+        {% if suggested_courses %}
+            <div class="suggested-list">
+                {% for suggestion in suggested_courses %}
+                    <div class="manage-card">
+                        <img src="{{ suggestion.course.image.url }}" alt="{{ suggestion.course.title }}">
+                        <div class="manage-card-content">
+                            <h3>{{ suggestion.course.title }}</h3>
+                            <div class="manage-actions">
+                                <form method="POST" action="{% url 'remove_suggested_course' suggestion.id %}" class="inline-form">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-unenroll">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-message">No suggested courses available.</p>
+        {% endif %}
+    </div>
+
+    <div class="manage-section">
+        <h2>Add New Suggested Course</h2>
+        <form method="POST" action="{% url 'add_suggested_course' %}" class="add-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="course">Select Course:</label>
+                <select name="course_id" id="course" required>
+                    <option value="">Select a course...</option>
+                    {% for course in available_courses %}
+                        <option value="{{ course.id }}">{{ course.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn">Add Course</button>
+        </form>
+    </div>
+</div>
+
+<style>
+.manage-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.manage-section {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.suggested-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.messages {
+    margin-bottom: 2rem;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.message.success {
+    background: rgba(52, 199, 89, 0.2);
+    border-color: rgba(52, 199, 89, 0.4);
+    color: #1c642f;
+}
+
+.message.error {
+    background: rgba(255, 59, 48, 0.15);
+    border-color: rgba(255, 59, 48, 0.3);
+    color: #a62a22;
+}
+
+.manage-card {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.manage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(31, 38, 135, 0.15);
+}
+
+.manage-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.manage-card-content {
+    padding: 1rem;
+}
+
+.manage-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+
+
+.add-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.inline-form {
+    display: inline;
+}
+</style>
+{% endblock %}

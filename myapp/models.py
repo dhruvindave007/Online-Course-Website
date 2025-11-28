@@ -15,12 +15,14 @@ class VisibleCourseManager(models.Manager):
     Use Course.all_objects to access all courses (including suggested).
     """
     def get_queryset(self):
-        return super().get_queryset().filter(suggestion__isnull=True)
+        return super().get_queryset().filter(suggestedcourse__isnull=True)
 
 
 # -------- User --------
 class CustomUser(AbstractUser):
     contact = models.CharField(max_length=15, blank=True, null=True)
+    def __str__(self):
+        return self.username
 
 # -------- Courses --------
 class Course(models.Model):
@@ -31,7 +33,7 @@ class Course(models.Model):
     image = models.ImageField(upload_to='static/images/', default='static/images/default.png')
     slug = models.SlugField(unique=True, blank=True, null=True)
     start_date = models.DateField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     # default manager: only non-suggested courses (so "all courses" section won't include suggested ones)
     objects = VisibleCourseManager()
@@ -68,20 +70,38 @@ class Course_detail(models.Model):
         return f"Details for {self.course.title}"
 
 
+    def _split_items(self, text):
+        """
+        Split text by both newlines and commas.
+        Handles data entered as:
+        - One item per line
+        - Comma-separated on same line
+        - Mix of both
+        """
+        items = []
+        for line in text.splitlines():
+            # Split each line by comma as well
+            for item in line.split(','):
+                cleaned = item.strip()
+                if cleaned:
+                    items.append(cleaned)
+        return items
+
     def get_overview(self):
+        # Overview is typically paragraph text, so keep it line-based only
         return [line.strip() for line in self.overview.splitlines() if line.strip()]
 
     def get_outcomes(self):
-        return [line.strip() for line in self.outcomes.splitlines() if line.strip()]
+        return self._split_items(self.outcomes)
 
     def get_skills(self):
-        return [line.strip() for line in self.skills.splitlines() if line.strip()]
+        return self._split_items(self.skills)
 
     def get_tools(self):
-        return [line.strip() for line in self.tools.splitlines() if line.strip()]
+        return self._split_items(self.tools)
 
     def get_requirements(self):
-        return [line.strip() for line in self.requirements.splitlines() if line.strip()]
+        return self._split_items(self.requirements)
 
 
     def __str__(self):
@@ -98,18 +118,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-class Suggestion(models.Model):
-    # one-to-one with Course: a course can be suggested at most once
-    course = models.OneToOneField(
-        Course,
-        on_delete=models.CASCADE,
-        related_name="suggestion",
-        null=True, blank=True, unique=True
-    )
-
-    def __str__(self):
-        return f"Suggestion: {self.course.title}"
 
 
 
@@ -164,7 +172,7 @@ class Enrollment(models.Model):
 class Wishlist(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="wishlists")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="wishlisted_by")
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         unique_together = ("user", "course")
@@ -172,3 +180,21 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"{self.user.username} wishlisted {self.course.title}"
+
+
+# -------- SuggestedCourse --------
+class SuggestedCourse(models.Model):
+    """
+    Marks a course as 'suggested' for the homepage.
+    When a course has a SuggestedCourse entry, it will appear in the suggested section
+    and will be excluded from the "All Courses" section via the VisibleCourseManager.
+    """
+    course = models.OneToOneField(Course, on_delete=models.CASCADE, related_name="suggestedcourse")
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    order = models.IntegerField(default=0, help_text="Display order (lower numbers appear first)")
+
+    class Meta:
+        ordering = ["order", "-created_at"]
+
+    def __str__(self):
+        return f"Suggested: {self.course.title}"

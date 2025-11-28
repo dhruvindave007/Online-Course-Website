@@ -11,21 +11,24 @@ body {
     background: linear-gradient(135deg, #a8e0ff 0%, #ffb3b8 100%);
     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
-    color: #1d1d1f; /* A slightly softer, Apple-like black for text */
+    color: #1d1d1f;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-attachment: fixed; /* Keeps the gradient still during scroll */
+    background-attachment: fixed;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 600;
     color: #111;
     margin-bottom: 0.5rem;
     font-family: 'Poppins', Arial, sans-serif;
 }
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
@@ -39,13 +42,18 @@ nav {
     padding: 1em;
 }
 
+nav a {
+    margin: 0 15px;
+    gap: 10px;
+    white-space: nowrap;
+}
 p {
     color: #333;
     font-family: 'Poppins', Arial, sans-serif;
 }
 
 a {
-    color: #007aff; /* Apple's system blue for links */
+    color: #007aff;
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
@@ -74,11 +82,13 @@ li {
 .enroll-btn,
 .btn-submit,
 .browsebtn {
-    background-color: #007aff; /* System blue */
+    background-color: #007aff;
+    /* System blue */
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 99px; /* Pill-shaped buttons are very modern */
+    border-radius: 99px;
+    /* Pill-shaped buttons are very modern */
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -117,7 +127,8 @@ li {
 
 .btn-unenroll,
 .removebtn {
-    background-color: #ff3b30; /* Apple's system red */
+    background-color: #ff3b30;
+    /* Apple's system red */
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -139,22 +150,15 @@ li {
 /* ========================
    Header & Footer
 ======================== */
-.home-logout {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1.2em;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #ff3b30;
-    border-radius: 99px; /* Pill shape */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+
+/* Logout link in nav bar */
+header nav .nav-logout {
+    color: #ff3b30;
+    font-weight: 600;
 }
 
-.home-logout:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 59, 48, 0.3);
+header nav .nav-logout:hover {
+    opacity: 1;
 }
 
 footer {
@@ -184,52 +188,79 @@ footer {
 .score-card,
 .review-section,
 .wishlist-card-horizontal,
-.suggested-section{
-    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
-    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+.suggested-section {
+    background: rgba(255, 255, 255, 0.45);
+    /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%);
+    /* The blur and saturation effect */
     -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-radius: 20px; /* Softer, more modern corners */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
+    border-radius: 20px;
+    /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* Soft, diffused shadow */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+
 }
 
-.wishlist-popup-card{
-    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
-    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+.wishlist-popup-card {
+    background: rgba(255, 255, 255, 0.45);
+    /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%);
+    /* The blur and saturation effect */
     -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-radius: 30px; /* Softer, more modern corners */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
+    border-radius: 30px;
+    /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* Soft, diffused shadow */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* should be fixed size of all card */
-.card{
+.card {
+    width: 400px;
     height: 400px;
-    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
-    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+    background: rgba(255, 255, 255, 0.45);
+    /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%);
+    /* The blur and saturation effect */
     -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-radius: 20px; /* Softer, more modern corners */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
+    border-radius: 20px;
+    /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* Soft, diffused shadow */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .category-section {
-    background: none; /* No glass effect for category section */
+    background: none;
+    /* No glass effect for category section */
     padding: 2rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     min-width: 300px;
 
 }
+.form-select{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.6);
+}
+
 .wishlist-popup-actions {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 15px;
 }
-.wishlist-popup-card{
+
+.wishlist-popup-card {
     text-align: center;
 }
 
@@ -242,6 +273,7 @@ footer {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 0.75rem;
     /* The background is already set on the body */
 }
 
@@ -280,9 +312,11 @@ footer {
 .register-form input {
     width: 100%;
     padding: 0.8rem 1rem;
-    background: rgba(230, 230, 230, 0.5); /* Semi-transparent input fields */
+    background: rgba(230, 230, 230, 0.5);
+    /* Semi-transparent input fields */
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px; /* Softer radius for inputs */
+    border-radius: 12px;
+    /* Softer radius for inputs */
     font-size: 1rem;
     margin-top: 0.4rem;
     box-sizing: border-box;
@@ -293,7 +327,8 @@ footer {
 .register-form input:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5); /* Focus ring */
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5);
+    /* Focus ring */
 }
 
 .register-text,
@@ -392,6 +427,8 @@ Course Category
 .module-card {
     padding: 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 90%;
+    justify-self: center;
 }
 
 .module-card:hover {
@@ -418,24 +455,25 @@ Course Category
 }
 
 .pagination-mobile {
-    display: none; /* hidden on desktop */
+    display: none;
+    /* hidden on desktop */
 }
 
 .page-link {
     display: inline-block;
     padding: 0.45rem 0.75rem;
     border-radius: 8px;
-    background: rgba(255,255,255,0.6);
+    background: rgba(255, 255, 255, 0.6);
     color: #111;
     text-decoration: none;
-    border: 1px solid rgba(0,0,0,0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     font-weight: 600;
 }
 
 .page-link.current {
     background: #007aff;
     color: #fff;
-    box-shadow: 0 6px 18px rgba(0,122,255,0.18);
+    box-shadow: 0 6px 18px rgba(0, 122, 255, 0.18);
 }
 
 .page-dots {
@@ -445,15 +483,21 @@ Course Category
 
 /* Mobile: show select and hide desktop links */
 @media (max-width: 768px) {
-    .pagination-desktop { display: none; }
-    .pagination-mobile { display: block; }
+    .pagination-desktop {
+        display: none;
+    }
+
+    .pagination-mobile {
+        display: block;
+    }
+
     .pagination-mobile select {
         /* dropdown should be exact above the page-select location */
         padding: 0.5rem 1rem;
         border-radius: 8px;
-        border: 1px solid rgba(0,0,0,0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
         font-size: 1rem;
-        background: rgba(255,255,255,0.6);
+        background: rgba(255, 255, 255, 0.6);
 
     }
 }
@@ -509,7 +553,8 @@ Course Category
 .course-sidebar img {
     width: 100%;
     height: auto;
-    border-radius: 12px; /* Consistent radius */
+    border-radius: 12px;
+    /* Consistent radius */
     margin-bottom: 1rem;
 }
 
@@ -526,6 +571,7 @@ Course Category
 .course-sidebar button,
 .course-sidebar a {
     text-align: center;
+    margin: 4px;
 }
 
 .course-heading {
@@ -549,7 +595,8 @@ Course Category
 
 .course-outcomes ul li::before {
     content: "✔";
-    color: #34c759; /* Apple's system green */
+    color: #34c759;
+    /* Apple's system green */
     margin-right: 0.5rem;
     font-weight: bold;
 }
@@ -597,13 +644,21 @@ Course Category
     color: #0056d2;
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 16px;
     font-weight: 500;
-    display: inline;
+    white-space: nowrap;
 }
+
+.course-tools ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
 .course-requirements ul li::before {
     content: "✔";
-    color: #34c759; /* Apple's system green */
+    color: #34c759;
+    /* Apple's system green */
     margin-right: 0.5rem;
     font-weight: bold;
 }
@@ -659,7 +714,8 @@ Course Category
     margin-right: 1rem;
     transform: scale(1.2);
     cursor: pointer;
-    accent-color: #007aff; /* Style the radio button itself */
+    accent-color: #007aff;
+    /* Style the radio button itself */
 }
 
 .option-item label {
@@ -668,6 +724,7 @@ Course Category
     cursor: pointer;
     flex-grow: 1;
 }
+
 
 /* ========================
    Responsive Design
@@ -684,6 +741,40 @@ Course Category
         border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1rem;
     }
+
+    /* Make enroll and wishlist buttons side by side */
+    .course-sidebar form {
+        display: inline-block;
+        margin-right: 0.5rem;
+    }
+
+    .course-sidebar form:last-of-type {
+        margin-right: 0;
+    }
+    
+    nav {
+    text-align: auto;
+    /* Applying the glass effect to the nav */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1em;
+}
+}
+
+/* Mobile - buttons side by side in course sidebar */
+@media (max-width: 480px) {
+    .course-sidebar form {
+        display: inline-block;
+        margin-right: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .course-sidebar form button {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
 }
 
 /* Container for all cards */
@@ -694,6 +785,13 @@ Course Category
     gap: 20px;
     padding: 20px;
     font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* Link wrapper styling */
+.card-container > a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 /* Card styling */
@@ -711,6 +809,37 @@ Course Category
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+}
+
+/* Card Container Responsive - Tablet */
+@media (max-width: 768px) {
+    .card-container {
+        padding: 15px;
+        gap: 15px;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 400px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+}
+
+/* Card Container Responsive - Mobile */
+@media (max-width: 480px) {
+    .card-container {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
 /* Image section */
@@ -748,7 +877,8 @@ Course Category
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px 15px; /* Add padding to match info */
+    padding: 0 15px 15px;
+    /* Add padding to match info */
 }
 
 .card .bottom .price {
@@ -879,10 +1009,33 @@ Course Category
 .incorrect-icon {
     color: #ff3b30;
 }
+/* buttoned style text*/
+.unanswered-icon { 
+        color: #ff9d00;
+        border: #111;
+        background-color: rgba(255, 157, 0, 0.15);
+        border-radius: 16px;
+        padding: 0.2rem 0.5rem;
+}
+
+
 
 /* ========================
    Wishlist
 ======================== */
+.wishlist-page {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.wishlist-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #111;
+}
+
 .wishlist-popup {
     position: fixed;
     inset: 0;
@@ -890,7 +1043,8 @@ Course Category
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px); /* Blur the background behind the popup */
+    backdrop-filter: blur(5px);
+    /* Blur the background behind the popup */
     -webkit-backdrop-filter: blur(5px);
     z-index: 9999;
 }
@@ -910,35 +1064,39 @@ Course Category
 .wishlist-card-horizontal {
     display: flex;
     align-items: flex-start;
-    gap: 230px;
+    gap: 1.5rem;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    background: rgba(255, 255, 255, 0.45); /* The "glass" transparency */
-    backdrop-filter: blur(20px) saturate(150%); /* The blur and saturation effect */
+    background: rgba(255, 255, 255, 0.45);
+    /* The "glass" transparency */
+    backdrop-filter: blur(20px) saturate(150%);
+    /* The blur and saturation effect */
     -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-radius: 20px; /* Softer, more modern corners */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge to catch the light */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, diffused shadow */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;}
+    border-radius: 20px;
+    /* Softer, more modern corners */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle edge to catch the light */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* Soft, diffused shadow */
+}
 
 /* Hover effect remains the same */
 .wishlist-card-horizontal:hover {
     box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
     transform: translateY(-5px);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
 }
 
-/* Image wrapper stays fixed width */
-
+/* Image wrapper */
 .wishlist-thumb-wrapper {
-    max-width: 180px;
+    flex-shrink: 0;
 }
 
 /* Image fills the wrapper nicely */
-
 .wishlist-thumb {
-    width: 360px;
-    height: 250px;
+    width: 280px;
+    height: 180px;
     object-fit: cover;
     border-radius: 12px;
     display: block;
@@ -947,44 +1105,193 @@ Course Category
 /* Details column */
 .wishlist-body {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    box-sizing: border-box;
 }
 
-.wishlist-course-title{
-    margin-left: -400px;
+.wishlist-course-title {
+    margin: 0;
+    font-size: 1.4rem;
 }
 
-.wishlist-body p{
-    font-weight: 600;
+.wishlist-course-title a {
+    color: #111;
+    text-decoration: none;
 }
 
-.wishlist-desc{
-    margin: 1px;
+.wishlist-course-title a:hover {
+    color: #007aff;
 }
 
-/* responsive */
-@media (max-width:880px) {
+.wishlist-body p {
+    font-weight: 500;
+}
+
+.wishlist-desc {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.wishlist-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.wishlist-meta span {
+    white-space: nowrap;
+}
+
+/* ========================
+   Wishlist Actions - Prioritized Styles
+======================== */
+.wishlist-card-horizontal .wishlist-body .wishlist-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    margin-top: auto !important;
+    padding-top: 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.wishlist-card-horizontal .wishlist-body .wishlist-actions .btn,
+.wishlist-card-horizontal .wishlist-body .wishlist-actions .btn-primary {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.9rem !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+}
+
+.wishlist-card-horizontal .wishlist-body .wishlist-actions .removebtn {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.9rem !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 880px) {
     .wishlist-card-horizontal {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .wishlist-thumb-wrapper {
         max-width: 100%;
-        flex: 0 0 auto;
+        width: 100%;
     }
 
     .wishlist-thumb {
+        width: 100%;
         height: 200px;
+    }
+
+    .wishlist-body {
+        padding: 0.5rem 0;
+    }
+
+    .wishlist-course-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 480px) {
+    .wishlist-page {
+        padding: 0 0.75rem;
+        margin: 1rem auto;
+    }
+
+    .wishlist-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .wishlist-card-horizontal {
+        padding: 0.75rem;
+        gap: 1rem;
+        border-radius: 16px;
+    }
+
+    .wishlist-thumb {
+        height: 160px;
+        border-radius: 10px;
+    }
+
+    .wishlist-course-title {
+        font-size: 1.1rem;
+    }
+
+    .wishlist-desc {
+        font-size: 0.85rem;
+    }
+
+    .wishlist-meta {
+        flex-direction: column;
+        gap: 0.25rem;
+        font-size: 0.85rem;
+    }
+
+    .wishlist-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .wishlist-actions .btn,
+    .wishlist-actions .removebtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .home-logout {
+        font-size: 1rem;
+        padding: 8px 16px;
+        top: 15px;
+        right: 15px;
     }
 }
 
 .suggested-heading {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 1.5rem;
+    color: #111;
+    margin-bottom: 2rem;
     text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    display: inline-block;
+    /* Center the inline-block element if its parent is a block with text-align: center */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.suggested-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, #00a6ff, #ff9098, #a8e0ff);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.2s ease-in-out;
+}
+
+.suggested-heading:hover::after {
+    background-position: 0 0;
 }
 
 .suggested-list {
@@ -1014,4 +1321,128 @@ Course Category
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-bottom: 10px;
     font-weight: 600;
+}
+
+/* ========================
+   Management Pages
+======================== */
+.manage-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.manage-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #111;
+    margin-bottom: 1rem;
+}
+
+.manage-subtitle {
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.manage-section {
+    margin-bottom: 2.5rem;
+}
+
+.item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    transition: background-color 0.2s ease;
+}
+
+.item-row:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.item-row span {
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-control {
+    padding: 0.8rem 1rem;
+    background: rgba(230, 230, 230, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5);
+}
+
+.btn-add {
+    background-color: #34c759; /* Apple Green */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 99px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-add:hover {
+    background-color: #2ca34a;
+    transform: translateY(-2px);
+}
+
+.btn-remove {
+    background-color: #ff3b30; /* Apple Red */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remove:hover {
+    background-color: #c70000;
 }
