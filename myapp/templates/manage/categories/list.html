@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}Manage Categories{% endblock %}
 
 {% block content %}
 <div class="manage-container">
@@ -28,7 +29,7 @@
             <div class="category-grid">
                 {% for cat in categories %}
                     <div class="category-card">
-                        <div class="category-info">
+                        <div class="category-info"> 
                             <h3>{{ cat.name }}</h3>
                             <p class="slug-text">Slug: {{ cat.slug }}</p>
                             <p class="course-count">{{ cat.courses.count }} course(s)</p>
@@ -58,7 +59,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-top:1rem;
+    margin-bottom: 1rem;
 }
 
 .page-title {
@@ -199,5 +201,7 @@
     font-size: 1.1rem;
     padding: 2rem;
 }
+
+
 </style>
 {% endblock %}

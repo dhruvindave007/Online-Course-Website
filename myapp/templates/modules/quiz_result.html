@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load custom_tags %}
+{% block title %}Quiz Result{% endblock %}
 
 {% block content %}
 
@@ -15,7 +16,10 @@
         <h2 class="review-title">Review Answers</h2>
         {% for question in quiz.questions.all %}
             <div class="review-card">
-                <p class="review-question"><strong>Q{{ forloop.counter }}:</strong> {{ question.text }}</p>
+                <p class="review-question"><strong>Q{{ forloop.counter }}:</strong> {{ question.text }} 
+                {% if question.id in unanswered %}
+                    <span class="status unanswered-icon"> Unanswered</span></p>
+                {% endif %}
                 <ul class="review-options">
                     {% for option in question.options.all %}
                         {% with user_answer_id=user_answers|get_item:question.id %}

@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}Home{% endblock %}
+
 {% block content %}
+
   <h2>Welcome, {{ request.user.username }}!</h2>
-  <a class="home-logout" href="{% url 'logout' %}">Logout</a>
 
   <!-- Category Section -->
   <div class="category-section">
@@ -134,55 +136,4 @@
     </nav>
     
   {% endif %}
-{% endblock %}
-{% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // Select all the cards
-    document.querySelectorAll('.card').forEach(card => {
-        
-        // Find the link *inside* the card. 
-        // We assume the first link is the one to follow.
-        const link = card.querySelector('a');
-        if (!link) return; // If no link, do nothing
-
-        const href = link.href;
-
-        // Add the click listener to the *entire card*
-        card.addEventListener('click', function(e) {
-            
-            // 1. Stop the link from navigating immediately
-            e.preventDefault();
-
-            // 2. Get the card's current position on the screen
-            const rect = card.getBoundingClientRect();
-
-            // 3. Set the card's initial state for the animation.
-            // We make it 'fixed' but force it to be at its *current*
-            // position, so the animation starts from the right place.
-            card.style.position = 'fixed';
-            card.style.top = `${rect.top}px`;
-            card.style.left = `${rect.left}px`;
-            card.style.width = `${rect.width}px`;
-            card.style.height = `${rect.height}px`;
-            card.style.zIndex = '9998'; // Just under the final z-index
-
-            // 4. Lock the body scroll
-            document.body.classList.add('card-expanding');
-
-            // 5. Wait for the browser's next frame, then add the
-            // 'expanded' class to trigger the animation.
-            requestAnimationFrame(() => {
-                card.classList.add('expanded');
-            });
-
-            // 6. After the animation is done (600ms), navigate to the link
-            setTimeout(() => {
-                window.location.href = href;
-            }, 600); // This MUST match your CSS transition duration!
-        });
-    });
-});
-</script>
 {% endblock %}

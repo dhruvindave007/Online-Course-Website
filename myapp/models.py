@@ -70,20 +70,38 @@ class Course_detail(models.Model):
         return f"Details for {self.course.title}"
 
 
+    def _split_items(self, text):
+        """
+        Split text by both newlines and commas.
+        Handles data entered as:
+        - One item per line
+        - Comma-separated on same line
+        - Mix of both
+        """
+        items = []
+        for line in text.splitlines():
+            # Split each line by comma as well
+            for item in line.split(','):
+                cleaned = item.strip()
+                if cleaned:
+                    items.append(cleaned)
+        return items
+
     def get_overview(self):
+        # Overview is typically paragraph text, so keep it line-based only
         return [line.strip() for line in self.overview.splitlines() if line.strip()]
 
     def get_outcomes(self):
-        return [line.strip() for line in self.outcomes.splitlines() if line.strip()]
+        return self._split_items(self.outcomes)
 
     def get_skills(self):
-        return [line.strip() for line in self.skills.splitlines() if line.strip()]
+        return self._split_items(self.skills)
 
     def get_tools(self):
-        return [line.strip() for line in self.tools.splitlines() if line.strip()]
+        return self._split_items(self.tools)
 
     def get_requirements(self):
-        return [line.strip() for line in self.requirements.splitlines() if line.strip()]
+        return self._split_items(self.requirements)
 
 
     def __str__(self):
